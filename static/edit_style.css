@@ -1,0 +1,32 @@
+body {
+    background-color: rgb(149, 161, 161);
+    font-family: "Krub", sans-serif;
+}
+
+#col_left {
+    background-color: #B4B6B9;
+    margin-top: 80px;
+    margin-right: 50px;
+}
+
+#col_right {
+    background-color: #B4B6B9;
+    margin-top: 80px;
+    margin-left: 50px;
+}
+
+#src_profile_img {
+    width: 50%;
+    height: 50%;
+    margin-left: 150px;
+    margin-top: 50px;
+}
+
+#upload_sty {
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+#input_text {
+    margin-top: 40px;
+}

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>AfterDeath Service | บริการจัดงานศพ</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/backend.css') }}">
+    <script src="{{ url_for ('static', filename='js/backend.js') }}"></script>
+    <script src="https://kit.fontawesome.com/72ccea37af.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!-- Bootstrap CSS v5.0.2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+  
+  <body>
+    {%if msg%}
+    <script>
+      window.onload = function() {
+        respon()
+        nav()
+        $('#ignismyModal').modal('show');
+        setTimeout(function() {
+          $("#ignismyModal").delay(1000).fadeOut();
+          setTimeout(function() {$('#ignismyModal').modal('hide');},1400);
+        }, 
+        1000);
+      }
+    </script>
+    <div class="modal fade" id="ignismyModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                      <div class="thank-you-pop">
+                        <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
+                        <h1>สำเร็จ</h1>
+                        <p>ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว</p>
+                      </div>     
+                    </div>
+                </div>
+            </div>
+        </div>
+      {%endif%}
+    <div id="nav"></div>
+    
+    <div class="container">
+      <form action="/backend/edit_confirm/{{data[0]}}" method="POST" enctype="multipart/form-data">
+      <div class="d-flex justify-content-center" style='margin-top:20px;margin-bottom: 10px;'>
+        <h3><i class="fa-solid fa-gears"></i> แก้ไขข้อมูลสินค้า | ID: {{data[0]}}</h3>
+      </div>
+      <div id="card-group" class="">
+
+        <div class="col">
+
+          <div class="d-flex justify-content-center">
+            <img id="i_img" src="/static/img/item/{{data[4]}}" class="img-thumbnail" style="width: 50%;">
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="input-group mb-3" style='margin-top:20px;width:80%;'>
+              <input type="file" name="edit_img" class="form-control" id="inputGroupFile02">
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">ชื่อสินค้า</span>
+            <input type="text" name="edit_name" value="{{data[1]}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">ราคาสินค้า</span>
+            <input type="text" name="edit_price" value="{{data[2]}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">สินค้าขายออก</span>
+            <input type="text" name="edit_sell" value="{{data[3]}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">คงเหลือในคลัง</span>
+            <input type="text" name="edit_stock" value="{{data[7]}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+          
+          <div class="d-flex bd-highlight">
+            <button type="submit" class="btn btn-success flex-fill" style='margin-left:5px;margin-right: 5px;'>บันทึกข้อมูล</button>
+            <a href="/backend/home" class="btn btn-danger flex-fill" style='margin-left:5px;margin-right: 5px;'>ยกเลิกข้อมูล</a>
+          </div>
+
+        </div>
+
+      </div>
+    </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  </body>
+</html>

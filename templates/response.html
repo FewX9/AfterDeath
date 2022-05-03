@@ -1,0 +1,20 @@
+{%if employee%}
+{% for row in employee %}
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-6">
+        <img src="{{ url_for ('static', filename='img/item/') }}{{row.img}}" class="img-fluid rounded-start">
+      </div>
+      <div class="col-md-6" style="display: flex;align-items: center;">
+        <div class="card-body">
+            <h2 class="card-title">{{row.name}}</h2>
+            <h5 class="card-title">ราคา : {{row.price}}฿</h5>
+            <button type="button" onclick="addtocart(['{{row.id}}','{{row.name}}','{{row.price}}','{{row.img}}'])" class="btn btn-outline-primary" id="btt_edit"><i class="fa-solid fa-cart-plus"></i> เพิ่มลงในตะกร้า</button>
+        </div>
+      </div>
+    </div>
+</div>
+{% endfor %}
+{%else%}
+ไม่พบข้อมูล
+{%endif%}

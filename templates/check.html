@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>AfterDeath Service | บริการจัดงานศพ</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/main.css') }}">
+    <script src="{{ url_for ('static', filename='js/main.js') }}"></script>
+    <script src="https://kit.fontawesome.com/72ccea37af.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS v5.0.2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  </head>
+  <body>
+      <div class="card position-absolute top-50 start-50 translate-middle" style="width: 23rem;">
+        
+          <div class="card-body" id="login">
+            <h1 class="card-title">เช็คสถานะสินค้า</h1>
+            <hr>
+            <form action="/status" method="POST" enctype="multipart/form-data">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">เบอร์โทร</span>
+                <input type="Number" name="phone" class="form-control" placeholder="กรอกเบอร์โทรที่ใช้สั่งซื้อ" aria-label="phone" aria-describedby="basic-addon1" required>
+              </div>
+              <div class="row g-2">
+                <button type="submit" onClick="check_order()" class="btn btn-success">เช็คสถานะสินค้า</button>
+                <button type="button" class="btn btn-primary" onclick="document.location='/'">กลับสู่หน้าหลัก</button>
+                <a href="/login" style="text-align:right;font-size:5px;"><i class="fa-solid fa-crown" style="margin-right:3px;"></i>สำหรับแอดมิน</a>
+              </div>
+            </form>
+          </div>
+        
+      </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  </body>
+</html>

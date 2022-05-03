@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>AfterDeath Service | บริการจัดงานศพ</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/backend.css') }}">
+    <script src="{{ url_for ('static', filename='js/backend.js') }}"></script>
+    <script src="https://kit.fontawesome.com/72ccea37af.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!-- Bootstrap CSS v5.0.2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+  
+  <body>
+    <div id="nav"></div>
+    
+    <div class="container">
+      
+      <form action="/backend/add_confirm" method="POST" enctype="multipart/form-data">
+        <div class="container d-flex justify-content-center" style='margin-top:15px;'>
+
+          <div class="card text-center" style='width:60%;'>
+            <div class="card-header">
+              <i class="fa-solid fa-circle-plus"></i> เพิ่มรายการสินค้า <i class="fa-solid fa-circle-plus"></i>
+            </div>
+            <div class="card-body">
+              {% if message %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>แจ้งเตือน</strong> เพิ่มสินค้าลงในระบบสำเร็จ
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <script>
+                  setTimeout(function() {$(".alert").delay(3000).fadeOut();}, 4000);
+                </script>
+              {% endif %}
+              <div class="container">
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">ชื่อสินค้า</span>
+                  <input type="text" class="form-control" name="i_name" placeholder="กรอกชื่อสินค้า" aria-describedby="basic-addon1" required>
+                </div>
+
+
+                <div class="input-group mb-3" >
+                  <span class="input-group-text" id="basic-addon1">ราคาสินค้า</span>
+                  <input type="number" min="1" onkeypress="return onlyNumberKey(event)" class="form-control" name="i_price" placeholder="ระบุราคาสินค้า" aria-describedby="basic-addon1" required>
+                  <div id ='add_price_text'></div>
+                </div>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">จำนวนสินค้าในคลัง</span>
+                  <input type="text" onkeypress="return onlyNumberKey(event)" class="form-control" name="i_stock" placeholder="ระบุจำนวนสินค้าในคลัง" aria-describedby="basic-addon1" required>
+                </div>
+                <hr>
+                <p>เลือกหมวดหมู่สินค้า</p>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" onclick="price_text()" name="collection" id="collection_coffin" value="coffin" required>
+                  <label class="form-check-label" for="inlineRadio1">โลงศพ</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" onclick="price_text()" name="collection" id="collection_food" value="food" required>
+                  <label class="form-check-label" for="inlineRadio2">อาหารจัดเลี้ยง</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" onclick="price_text()" name="collection" id="collection_gift" value="gift" required>
+                  <label class="form-check-label" for="inlineRadio3">ของชำร่วย</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" onclick="price_text()" name="collection" id="collection_flower" value="flower" required>
+                  <label class="form-check-label" for="inlineRadio3">พวงหรีด</label>
+                </div>
+                <hr>
+
+                <p>แนะนำสินค้าในหน้าหลัก</p>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="recommend" id="recommend_false" value="false" required checked>
+                  <label class="form-check-label" for="inlineRadio1">ไม่แนะนำสินค้า</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="recommend" id="recommend_true" value="true" required>
+                  <label class="form-check-label" for="inlineRadio2">แนะนำสินค้า</label>
+                </div>
+                <hr>
+
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="inputGroupFile01">รูปภาพสินค้า</label>
+                  <input class="form-control" name="i_img" type="file" id="i_img" required>
+                </div>
+
+                <script>
+                  $('#i_img').on('change', function() {
+                    console.log('This file size is: ' + this.files[0].size / 1024 / 1024 + "MiB");
+                  });
+                </script>
+
+              </div>
+            </div>
+            <div class="card-footer text-muted d-flex bd-highlight">
+              <button type='submit' class="btn btn-success p-2 flex-fill bd-highlight" style='margin-left:5px;margin-right:5px;'>บันทึกข้อมูล</button>
+              <a href="/backend/home" class="btn btn-danger flex-fill" style='margin-left:5px;margin-right: 5px;'>ยกเลิก</a>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+    <script>
+      function price_text(){
+        var coll = $("input[name=collection]:checked").val()
+        if (coll == 'coffin'){
+          $('#add_price_text').empty()
+          $('#add_price_text').append(`<span class="input-group-text" id="basic-addon1" id="price_info">ราคาต่อ 1 โลง</span>`)
+        }else if (coll == 'food'){
+          $('#add_price_text').empty()
+          $('#add_price_text').append(`<span class="input-group-text" id="basic-addon1" id="price_info">ราคาต่อ 1 เซ็ต 20 จาน</span>`)
+        }else if (coll == 'gift'){
+          $('#add_price_text').empty()
+          $('#add_price_text').append(`<span class="input-group-text" id="basic-addon1" id="price_info">ราคาต่อ 1 เซ็ต 20 ชิ้น</span>`)
+        }else if (coll == 'flower'){
+          $('#add_price_text').empty()
+          $('#add_price_text').append(`<span class="input-group-text" id="basic-addon1" id="price_info">ราคาต่อ 1 ชิ้น</span>`)
+        }
+      }
+      function onlyNumberKey(evt) {
+          var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+          if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+              return false;
+          return true;
+          
+      }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  </body>
+</html>

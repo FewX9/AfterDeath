@@ -1,0 +1,24 @@
+#text_pd {
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
+#card_product {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#btt_edit {
+    margin-right: 0;
+}
+
+#btt_delete {
+    margin-right: 50;
+}
+
+body {
+    background-color: #E5E7E9 !important;
+}
