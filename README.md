@@ -5,7 +5,7 @@
 - css 
 - javascript 
 - Python(Flask) 
-- mysqll
+- mysql
 # ตัวอย่าง
 ![This is an image](https://media.discordapp.net/attachments/939445126692995092/970241518046699541/unknown.png?width=783&height=676)
 ![This is an image](https://media.discordapp.net/attachments/939445126692995092/970244390725492776/unknown.png?width=1385&height=676)
